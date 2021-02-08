@@ -11,8 +11,8 @@ endpoint = "https://api.twitter.com/2/tweets/search/all"
 
 params = {
     'query': query,
-    'tweet_fields' = 'created_at,author_id,lang'
-    'user_fields' = 'id,name,username,location'
+    'tweet_fields' = 'created_at,author_id,lang',
+    'user_fields' = 'id,name,username,location',
     'start_time': start_time,
     'end_time': end_time,
     'max_results': max_results
