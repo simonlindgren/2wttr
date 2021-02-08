@@ -11,8 +11,8 @@ endpoint = "https://api.twitter.com/2/tweets/search/all"
 
 params = {
     'query': query,
-    'tweet.fields': tweet_fields,
-    'user.fields': user_fields,
+    'tweet_fields' = 'created_at,author_id,lang'
+    'user_fields' = 'id,name,username,location'
     'start_time': start_time,
     'end_time': end_time,
     'max_results': max_results
@@ -32,8 +32,19 @@ with open("dataset.jsonl", "w") as datafile:
 
     # PARSE PAGE
     try:
-        for tweet in json_response['data']:
-            datafile.write(str(tweet) + "\n")
+        
+        for tweet_dict in json_response['data']:
+            user_dict = json_response['includes']['users'] # read the dict with user data which comes separately from the tweet_dict
+            
+            # Add some user data to the tweet data dicty
+            user_to_get = tweet_dict['author_id']
+            
+            for u in user_dict:
+                if u['id'] == user_to_get:
+                    tweet_dict['username'] = u['username']
+                    tweet_dict['name'] = u['name']
+
+            datafile.write(str(tweet_dict) + "\n")
     except:
         print("No tweets returned")
 
@@ -55,6 +66,17 @@ with open("dataset.jsonl", "w") as datafile:
               
                 for tweet in json_response['data']:
                     datafile.write(str(tweet) + "\n")
+                
+                
+                
+                for tweet_dict in json_response['data']:
+                    user_dict = json_response['includes']['users']
+                    user_to_get = tweet_dict['author_id']
+                    for u in user_dict:
+                        if u['id'] == user_to_get:
+                            tweet_dict['username'] = u['username']
+                            tweet_dict['name'] = u['name']
+                              
                 next_token = json_response['meta']['next_token']
                 query_params['pagination_token'] = pagination_token
 
