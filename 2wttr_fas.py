@@ -66,13 +66,7 @@ with open("dataset.jsonl", "w") as datafile:
             if response.status_code != 200:
                 raise Exception(response.status_code, response.text)
             json_response = response.json()
-            try:
-              
-                for tweet in json_response['data']:
-                    datafile.write(str(tweet) + "\n")
-                
-                
-                
+            try:          
                 for tweet_dict in json_response['data']:
                     user_dict = json_response['includes']['users']
                     user_to_get = tweet_dict['author_id']
@@ -81,6 +75,8 @@ with open("dataset.jsonl", "w") as datafile:
                             tweet_dict['username'] = u['username']
                             tweet_dict['name'] = u['name']
                               
+                datafile.write(str(tweet_dict) + "\n")
+            
                 next_token = json_response['meta']['next_token']
                 query_params['pagination_token'] = pagination_token
 
@@ -88,3 +84,5 @@ with open("dataset.jsonl", "w") as datafile:
                 break
     
     print("Done")
+
+print(json_response)
