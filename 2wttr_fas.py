@@ -11,11 +11,15 @@ endpoint = "https://api.twitter.com/2/tweets/search/all"
 
 params = {
     'query': query,
-    'tweet_fields' : 'created_at,author_id,lang',
-    'user_fields' : 'id,name,username,location',
+    'expansions': 'author_id,referenced_tweets.id,geo.place_id,in_reply_to_user_id,referenced_tweets.id.author_id',
+    'tweet.fields': 'created_at,author_id,lang,entities,geo,referenced_tweets,in_reply_to_user_id,public_metrics', 
+    'user.fields': 'username',
+    
+    
     'start_time': start_time,
     'end_time': end_time,
-    'max_results': max_results
+    'max_results': max_results,
+    
 }
 
 
