@@ -10,6 +10,11 @@ Current functionality:
 Full archive search. Academic access allows for 10M tweets to be collected per month. Keep track on the [developer portal](https://developer.twitter.com/en/portal/dashboard).
 
 1. Provide your bearer token and parameters in `config_fas.py`.
-2. `$python3 2wttr_fas.py`.
+2. `$ python3 2wttr_fas.py`.
 
 Requests will be done in batches of 100 tweets per page, and paginate until no more tweets are returned. Results will be saved as `dataset.jsonl`.
+
+
+## Format data
+
+Run `$ python3 parse.py` to convert `dataset.jsonl` to a tidier version.
