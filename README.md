@@ -1,5 +1,5 @@
 # 2wittr
-Get tweets from the v2 Twitter API, using Academic access.
+Get tweets from the v2 Twitter API, using [Academic access](https://developer.twitter.com/en/solutions/academic-research).
 
 Current functionality:
 
