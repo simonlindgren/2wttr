@@ -55,7 +55,7 @@ with open("dataset.jsonl", "w") as datafile:
     # PAGINATE
     try:
         next_token = json_response['meta']['next_token'] # get next_token
-        query_params['pagination_token'] = next_token # add pagination key to query dict
+        params['pagination_token'] = next_token # add pagination key to query dict
     except:
         print("No more pages")
     
